@@ -6,25 +6,25 @@ pipeline {
     stages{
         stage('BUILD'){
             steps {
-                'mvn clean install'
+                sh 'mvn clean install'
             }
         }
     //     stage("LOGIN")
     //     {
     //         steps{
-    //             'echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin'
+    //             sh 'echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin'
     //         }
     //     }
     //     stage("BUILD_IMAGE")
     //     {
     //         steps{
-    //             'echo docker build -t $DOCKERHUB_USR/simplewebapp:1.0 .'
+    //             sh 'echo docker build -t $DOCKERHUB_USR/simplewebapp:1.0 .'
     //         }
     //     }
     //     stage("PUSH")
     //     {
     //         steps{
-    //             'echo docker push $DOCKERHUB_USR/simplewebapp:1.0'
+    //             sh 'echo docker push $DOCKERHUB_USR/simplewebapp:1.0'
     //         }
     //     }
 
