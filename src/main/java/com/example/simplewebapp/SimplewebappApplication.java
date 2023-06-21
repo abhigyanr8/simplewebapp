@@ -16,7 +16,7 @@ public class SimplewebappApplication {
 	@GetMapping("/")
 	String getHelloworld()
 	{
-		return "Hello World new";
+		return "Hello World";
 	}
 
 }
