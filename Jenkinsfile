@@ -4,30 +4,40 @@ pipeline {
         maven "MAVEN3"
     }
     stages{
-        stage('BUILD'){
-            steps {
-                sh 'mvn clean install'
+        stage('BUILD')
+        {
+            steps{
+                bat 'mvn clean install'
+            }
+            
+        }
+        stage('DOCKERLOGIN')
+        {
+            steps{
+              
+                bat 'docker login -u abhigyanr8 -p dckr_pat_H5WhHQxM7TRxIowpQJ0K8pyuEDI'
+             }
+            
+        }
+        stage('DOCKERBUILD')
+        {
+            steps{
+                bat 'docker build -t abhigyanr8/simplewebapp:2.0 .'
             }
         }
-    //     stage("LOGIN")
-    //     {
-    //         steps{
-    //             sh 'echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin'
-    //         }
-    //     }
-    //     stage("BUILD_IMAGE")
-    //     {
-    //         steps{
-    //             sh 'echo docker build -t $DOCKERHUB_USR/simplewebapp:1.0 .'
-    //         }
-    //     }
-    //     stage("PUSH")
-    //     {
-    //         steps{
-    //             sh 'echo docker push $DOCKERHUB_USR/simplewebapp:1.0'
-    //         }
-    //     }
-
-     }
+        stage('DOCKERPUSH')
+        {
+            steps{
+                bat 'docker push abhigyanr8/simplewebapp:2.0'
+            }
+        }
+        stage('DOCKERRUN')
+        {
+            steps{
+                bat 'docker run -p9090:9090 -d abhigyanr8/simplewebapp:2.0'
+            }
+        }
+        
+    }
             
 }
